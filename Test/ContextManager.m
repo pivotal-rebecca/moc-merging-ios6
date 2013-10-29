@@ -45,7 +45,7 @@ static ContextManager *instance;
     }
     
     _mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    _mainContext.parentContext = self.backgroundContext;
+    _mainContext.persistentStoreCoordinator = [self persistentStoreCoordinator];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeChangesIntoMainContext:) name:NSManagedObjectContextDidSaveNotification object:self.backgroundContext];
     
